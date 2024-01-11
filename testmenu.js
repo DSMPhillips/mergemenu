@@ -1,7 +1,6 @@
 videojs.registerPlugin('testmenu', function() {
   // +++ Create divs for buttons +++
   var vPlayer = this,
-    jumpAmount = 15,
     controlBar,
     insertBeforeNode,
     newElementtm = document.createElement("div"),
