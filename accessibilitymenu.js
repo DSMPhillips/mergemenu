@@ -2,7 +2,9 @@
 
 videojs.registerPlugin('AccessibilityButton', function() {
   // +++ Create divs for buttons +++
-  var vPlayer = this;
+  var vPlayer = this,
+    controlBar,
+    insertBeforeNode;
     AccessibilityButton.addChild('AccessibilityMenu');
     AccessibilityButton.addChild('SubsCapsMenuItem');
     AccessibilityButton.addChild('CaptionSettingsMenuItem');
