@@ -1,4 +1,4 @@
-var AccessibilityButton = player.getChild('ControlBar').addChild('Accessibility Options', {
+var AccessibilityButton = bcplayerRNIpmFpKyq.getChild('ControlBar').addChild('Accessibility Options', {
   clickHandler: function(event) {
     videojs.log('Clicked');
   }
