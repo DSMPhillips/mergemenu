@@ -1,27 +1,31 @@
+var MenuButton = videojs.getComponent('MenuButton');
+var MenuItem = videojs.getComponent('MenuItem');
 
+var CustomMenuButton = videojs.extend(
+  MenuButton,
+  {
+    createItems: function() {
+      // Must return an array of `MenuItem`s
+      // Options passed in `addChild` are available at `this.options_`
+      CustomMenuButton.addChild('AccessibilityMenu');
+      CustomMenuButton.addChild('SubsCapsMenuItem');
+      CustomMenuButton.addChild('CaptionSettingsMenuItem');
+      CustomMenuButton.addChild('OffTextTrackMenuItem');
+      CustomMenuButton.addChild('AudioTrackMenuItem');
+      return this.options().myItems.map(function(i) {
+        var item = new MenuItem(this.player(), {label: i.name});
+        item.handleClick = function() { /* ... */ };
+        return item;
+      });
+    }
+  }
+);
 
-videojs.registerPlugin('AccessibilityButton', function() {
-  // +++ Create divs for buttons +++
-  var vPlayer = this,
-    controlBar,
-    insertBeforeNode,
-    newElementAM = document.createElement("div");
+// Register as a component, so it can be added
+videojs.registerComponent('CustomMenuButton', CustomMenuButton);
 
-  // +++ Assign properties to elements and assign to parents +++
-    newElementAM.innerHTML = "<button class='vjs-control vjs-button vjs-accessibilty' type='button' title='Accessibility Menu' aria-disabled='false'><span class='vjs-icon-placeholder' aria-hidden='true'></span><span class='vjs-control-text' aria-live='polite'>Select Captions and Descriptive Audio</span></button>";
-
-    AccessibilityButton.addChild('AccessibilityMenu');
-    AccessibilityButton.addChild('SubsCapsMenuItem');
-    AccessibilityButton.addChild('CaptionSettingsMenuItem');
-    AccessibilityButton.addChild('OffTextTrackMenuItem');
-    AccessibilityButton.addChild('AudioTrackMenuItem');
-
-    // +++ Get controlbar and insert elements +++
-  controlBar = vPlayer.$(".vjs-control-bar");
-  // Get the element to insert buttons in front of in conrolbar
-  insertBeforeNode = vPlayer.$(".vjs-fullscreen-control");
-
-   // Insert the button div in proper location
-  controlBar.insertBefore(newElementAM, insertBeforeNode);
-
+// Use `addChild` to add an instance of the new component, with options
+player.controlBar.addChild('CustomMenuButton', {
+  title: 'Accessibility Menu',
+  myItems: [{name: 'Hello'}, {name: 'World'}]
 });
