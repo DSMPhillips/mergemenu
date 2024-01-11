@@ -1,7 +1,7 @@
 var MenuButton = videojs.getComponent('MenuButton');
 var MenuItem = videojs.getComponent('MenuItem');
 
-var AccessibilityButton extends MenuButton
+class AccessibilityButton extends MenuButton
   {
     createItems: function() {
       // Must return an array of `MenuItem`s
