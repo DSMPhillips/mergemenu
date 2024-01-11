@@ -3,5 +3,10 @@ g.merge(g.ControlBar.prototype.options.components, {
     "CaptionsButton": {},
     "ChaptersButton": {},
     "SubsCapsButton": {},
-    "AudioTrackButton": {}
+    "AudioTrackButton": {},
+    "TextTrackMenuItem": {},
+    "SubsCapsMenuItem": {},
+    "CaptionSettingsMenuItem": {},
+    "OffTextTrackMenuItem": {},
+    "AudioTrackMenuItem": {}
  });
