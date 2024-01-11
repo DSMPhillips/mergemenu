@@ -2,5 +2,5 @@
 g.merge(g.ControlBar.prototype.options_.components, {
     "chaptersButton": {},
     "subsCapsButton": {},
-    "audioTrackButton": {},
+    "audioTrackButton": {}
  });
