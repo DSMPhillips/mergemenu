@@ -23,6 +23,17 @@ var CustomMenuButton = videojs.extend(
 
 // Register as a component, so it can be added
 videojs.registerComponent('CustomMenuButton', CustomMenuButton);
+var vPlayer = this,
+    controlBar,
+    insertBeforeNode;
+
+// +++ Get controlbar and insert elements +++
+  controlBar = vPlayer.$(".vjs-control-bar");
+  // Get the element to insert buttons in front of in conrolbar
+  insertBeforeNode = vPlayer.$(".vjs-picture-in-picture-control");
+
+  // Insert the button div in proper location
+  controlBar.insertBefore(CustomMenuButton, insertBeforeNode);
 
 // Use `addChild` to add an instance of the new component, with options
 player.controlBar.addChild('CustomMenuButton', {
