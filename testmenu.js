@@ -14,7 +14,7 @@ videojs.registerPlugin('testmenu', function() {
   // +++ Get controlbar and insert elements +++
   controlBar = vPlayer.$(".vjs-control-bar");
   // Get the element to insert buttons in front of in conrolbar
-  insertBeforeNode = vPlayer.$(".vjs-fullscreen-control");
+  insertBeforeNode = vPlayer.$(".vjs-picture-in-picture-control");
 
   // Insert the button div in proper location
   controlBar.insertBefore(newElementtm, insertBeforeNode);
