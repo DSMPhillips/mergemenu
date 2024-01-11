@@ -1,16 +1,16 @@
-var AccessibilityButton = bcplayerRNIpmFpKyq.getChild('ControlBar').addChild('Accessibility Options', {
-  clickHandler: function(event) {
-    videojs.log('Clicked');
-  }
+
+
+videojs.registerPlugin('AccessibilityButton', function() {
+  // +++ Create divs for buttons +++
+  var vPlayer = this;
+    AccessibilityButton.addChild('AccessibilityMenu');
+    AccessibilityButton.addChild('SubsCapsMenuItem');
+    AccessibilityButton.addChild('CaptionSettingsMenuItem');
+    AccessibilityButton.addChild('OffTextTrackMenuItem');
+    AccessibilityButton.addChild('AudioTrackMenuItem');
+
+    // +++ Get controlbar and insert elements +++
+  controlBar = vPlayer.$(".vjs-control-bar");
+  // Get the element to insert buttons in front of in conrolbar
+  insertBeforeNode = vPlayer.$(".vjs-fullscreen-toggle");
 });
-
-AccessibilityButton.setIcon('menu');
-
-var AccessibilityMenu = new Component(player);
-AccessibilityButton.addChild('AccessibilityMenu');
-AccessibilityMenu.addChild('SubsCapsMenuItem');
-AccessibilityMenu.addChild('CaptionSettingsMenuItem');
-AccessibilityMenu.addChild('OffTextTrackMenuItem');
-AccessibilityMenu.addChild('AudioTrackMenuItem');
-
-console.log(button.el());
