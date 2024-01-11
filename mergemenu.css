@@ -1,12 +1,7 @@
-g.merge(g.ControlBar.prototype.options.components, {
-    "SubtitlesButton": {},
-    "CaptionsButton": {},
-    "ChaptersButton": {},
-    "SubsCapsButton": {},
-    "AudioTrackButton": {},
-    "TextTrackMenuItem": {},
-    "SubsCapsMenuItem": {},
-    "CaptionSettingsMenuItem": {},
-    "OffTextTrackMenuItem": {},
-    "AudioTrackMenuItem": {}
- });
+.vjs-audio-button .vjs-text-track-button {
+    merge: true;
+}
+.video-js {
+    width: 640px;
+    height: 360px;
+}
