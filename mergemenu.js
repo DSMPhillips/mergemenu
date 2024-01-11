@@ -130,15 +130,15 @@ videojs_init(document.querySelector('.video-js'));
 
         /**
          * Menu item constructor.
-         *
-         * @param {Player} player - vjs player
-         * @param {Object} item - Item object
-         * @param {AccessibilityMenu} AccessibilityMenu - The containing button.
-            @param {OffTextTrackMenuItem} OffTextTrackMenuItem
-            @param {CaptionSettingsMenuItem} CaptionSettingsMenuItem
-            @param {SubsCapsMenuItem} SubsCapsMenuItem
-            @param {AudioTrackMenuItem} AudioTrackMenuItem
          */
+        @param {Player} player - vjs player
+        @param {Object} item - Item object
+        @param {AccessibilityMenu} AccessibilityMenu - The containing button.
+        @param {OffTextTrackMenuItem} OffTextTrackMenuItem
+        @param {CaptionSettingsMenuItem} CaptionSettingsMenuItem
+        @param {SubsCapsMenuItem} SubsCapsMenuItem
+        @param {AudioTrackMenuItem} AudioTrackMenuItem
+         
         function AccessibilityMenuItem(player, item, AccessibilityMenu, plugin) {
             classCallCheck(this, AccessibilityMenuItem);
 
