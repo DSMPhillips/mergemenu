@@ -19,7 +19,7 @@ videojs.registerPlugin('AccessibilityButton', function() {
     // +++ Get controlbar and insert elements +++
   controlBar = vPlayer.$(".vjs-control-bar");
   // Get the element to insert buttons in front of in conrolbar
-  insertBeforeNode = vPlayer.$(".vjs-fullscreen-toggle");
+  insertBeforeNode = vPlayer.$(".vjs-fullscreen-control");
 
    // Insert the button div in proper location
   controlBar.insertBefore(newElementAM, insertBeforeNode);
