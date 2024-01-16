@@ -2,7 +2,8 @@
  * @file settings-menu-item.js
  */
 
-import videojs from 'video.js';
+const videojs = require('https://players.brightcove.net/18140038001/QNJaJnYB8p_default/index.min.js');
+//import videojs from 'video.js';
 
 const MenuItem = videojs.getComponent('MenuItem');
 const playbackRateMenuButton = videojs.getComponent('PlaybackRateMenuButton');
