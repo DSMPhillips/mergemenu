@@ -3,8 +3,9 @@
  * @file settings-menu-button.js
  */
 const videojs = require('https://players.brightcove.net/18140038001/QNJaJnYB8p_default/index.min.js');
+const SettingsMenuItem = require('./settings-menu-item.js');
 //import videojs from 'https://players.brightcove.net/18140038001/QNJaJnYB8p_default/index.min.js';
-import SettingsMenuItem from './settings-menu-item.js';
+//import SettingsMenuItem from './settings-menu-item.js';
 const MenuButton = videojs.getComponent('MenuButton');
 const Menu = videojs.getComponent('Menu');
 const Component = videojs.getComponent('Component');
