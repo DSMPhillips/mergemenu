@@ -2,6 +2,8 @@
 /**
  * @file settings-menu-button.js
  */
+<script type="module" src="https://players.brightcove.net/18140038001/7Vb9UqWVl_default/index.min.js"></script>
+
 const videojs = require('https://players.brightcove.net/18140038001/7Vb9UqWVl_default/index.min.js');
 const SettingsMenuItem = require('./settings-menu-item.js');
 //import videojs from 'https://players.brightcove.net/18140038001/QNJaJnYB8p_default/index.min.js';
