@@ -1,99 +1,91 @@
-<script type="module" src="https://players.brightcove.net/18140038001/7Vb9UqWVl_default/index.min.js"></script>
-
 /**
- * @file settings-menu-button.js
+ * @file text-track-button.js
  */
-
-
-const videojs = require('https://players.brightcove.net/18140038001/7Vb9UqWVl_default/index.min.js');
-const SettingsMenuItem = require('./settings-menu-item.js');
-//import videojs from 'https://players.brightcove.net/18140038001/QNJaJnYB8p_default/index.min.js';
-//import SettingsMenuItem from './settings-menu-item.js';
-const MenuButton = videojs.getComponent('MenuButton');
-const Menu = videojs.getComponent('Menu');
-const Component = videojs.getComponent('Component');
+import TrackButton from '../track-button.js';
+import Component from '../../component.js';
+import TextTrackMenuItem from './text-track-menu-item.js';
+import OffTextTrackMenuItem from './off-text-track-menu-item.js';
 
 /**
- * The component for controlling the settings menu
+ * The base class for buttons that toggle specific text track types (e.g. subtitles)
  *
- * @param {Player|Object} player
- * @param {Object=} options
  * @extends MenuButton
- * @class SettingsMenuButton
  */
-class SettingsMenuButton extends MenuButton {
+class TextTrackButton extends TrackButton {
 
-  constructor(player, options) {
+  /**
+   * Creates an instance of this class.
+   *
+   * @param { import('../../player').default } player
+   *        The `Player` that this class should be attached to.
+   *
+   * @param {Object} [options={}]
+   *        The key/value store of player options.
+   */
+  constructor(player, options = {}) {
+    options.tracks = player.textTracks();
+
     super(player, options);
-
-    this.el_.setAttribute('aria-label', 'Settings Menu');
-
-    this.on('mouseleave', videojs.bind(this, this.hideChildren));
   }
 
   /**
-   * Allow sub components to stack CSS class names
+   * Create a menu item for each text track
    *
-   * @return {String} The constructed class name
-   * @method buildCSSClass
-   */
-  buildCSSClass() {
-    // vjs-icon-cog can be removed when the settings menu is integrated in video.js
-    return `vjs-settings-menu vjs-icon-cog ${super.buildCSSClass()}`;
-  }
-
-  /**
-   * Create the settings menu
+   * @param {TextTrackMenuItem[]} [items=[]]
+   *        Existing array of items to use during creation
    *
-   * @return {Menu} Menu object populated with items
-   * @method createMenu
+   * @return {TextTrackMenuItem[]}
+   *         Array of menu items that were created
    */
-  createMenu() {
-    let menu = new Menu(this.player());
-    let entries = this.options_.entries;
+  createItems(items = [], TrackMenuItem = TextTrackMenuItem) {
 
-    if (entries) {
+    // Label is an override for the [track] off label
+    // USed to localise captions/subtitles
+    let label;
 
-      const openSubMenu = function() {
+    if (this.label_) {
+      label = `${this.label_} off`;
+    }
+    // Add an OFF menu item to turn all tracks off
+    items.push(new OffTextTrackMenuItem(this.player_, {
+      kinds: this.kinds_,
+      kind: this.kind_,
+      label
+    }));
 
-        if (videojs.hasClass(this.el_, 'open')) {
-          videojs.removeClass(this.el_, 'open');
-        } else {
-          videojs.addClass(this.el_, 'open');
-        }
+    this.hideThreshold_ += 1;
 
-      };
+    const tracks = this.player_.textTracks();
 
-      for (let entry of entries) {
+    if (!Array.isArray(this.kinds_)) {
+      this.kinds_ = [this.kind_];
+    }
 
-        let settingsMenuItem = new SettingsMenuItem(this.player(), this.options_, entry);
+    for (let i = 0; i < tracks.length; i++) {
+      const track = tracks[i];
 
-        menu.addChild(settingsMenuItem);
+      // only add tracks that are of an appropriate kind and have a label
+      if (this.kinds_.indexOf(track.kind) > -1) {
 
-        // Hide children to avoid sub menus stacking on top of each other
-        // or having multiple menus open
-        settingsMenuItem.on('click', videojs.bind(this, this.hideChildren));
+        const item = new TrackMenuItem(this.player_, {
+          track,
+          kinds: this.kinds_,
+          kind: this.kind_,
+          // MenuItem is selectable
+          selectable: true,
+          // MenuItem is NOT multiSelectable (i.e. only one can be marked "selected" at a time)
+          multiSelectable: false
+        });
 
-        // Wether to add or remove selected class on the settings sub menu element
-        settingsMenuItem.on('click', openSubMenu);
+        item.addClass(`vjs-${track.kind}-menu-item`);
+        items.push(item);
       }
     }
 
-    return menu;
-  }
-
-  /**
-   * Hide all the sub menus
-   */
-  hideChildren() {
-    for (let menuChild of this.menu.children()) {
-      menuChild.hideSubMenu();
-    }
+    return items;
   }
 
 }
 
-SettingsMenuButton.prototype.controlText_ = 'Settings Menu';
-
-Component.registerComponent('SettingsMenuButton', SettingsMenuButton);
-export default SettingsMenuButton;
+Component.registerComponent('TextTrackButton', TextTrackButton);
+export default TextTrackButton;
