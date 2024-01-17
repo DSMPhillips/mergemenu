@@ -1,10 +1,17 @@
 /**
  * @file text-track-button.js
  */
-import TrackButton from '../track-button.js';
-import Component from '../../component.js';
-import TextTrackMenuItem from './text-track-menu-item.js';
-import OffTextTrackMenuItem from './off-text-track-menu-item.js';
+import { TrackButton } from 'module'
+const require = TrackButton(../track-button.js);
+
+import { Component } from 'module'
+const require = Component(../../component.js);
+
+import { TextTrackMenuItem } from 'module'
+const require = TextTrackMenuItem(./text-track-menu-item.js);
+
+import { OffTextTrackMenuItem } from 'module'
+const require = OffTextTrackMenuItem(./off-text-track-menu-item.js);
 
 /**
  * The base class for buttons that toggle specific text track types (e.g. subtitles)
